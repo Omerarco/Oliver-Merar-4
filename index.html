@@ -1,0 +1,77 @@
+index.html <!DOCTYPE html>
+<html>
+<head>
+  <title>Universal Web Hub</title>
+
+  <style>
+    body{
+      background:#111;
+      color:white;
+      font-family:Arial;
+      text-align:center;
+      padding:40px;
+    }
+
+    h1{
+      font-size:50px;
+    }
+
+    input{
+      width:60%;
+      padding:15px;
+      font-size:20px;
+      border-radius:10px;
+      border:none;
+    }
+
+    button{
+      padding:15px 25px;
+      font-size:20px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    .apps{
+      margin-top:40px;
+    }
+
+    a{
+      display:inline-block;
+      margin:15px;
+      padding:15px 20px;
+      background:#222;
+      border-radius:12px;
+      color:white;
+      text-decoration:none;
+      font-size:22px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Universal Web Hub</h1>
+
+<input id="search" placeholder="Search the web">
+<button onclick="searchWeb()">Search</button>
+
+<div class="apps">
+  <a href="https://google.com">Google</a>
+  <a href="https://youtube.com">YouTube</a>
+  <a href="https://chatgpt.com">ChatGPT</a>
+  <a href="https://github.com">GitHub</a>
+  <a href="https://wikipedia.org">Wikipedia</a>
+</div>
+
+<script>
+function searchWeb(){
+  let q=document.getElementById("search").value;
+  window.open(
+    "https://www.google.com/search?q="+encodeURIComponent(q)
+  );
+}
+</script>
+
+</body>
+</html>
