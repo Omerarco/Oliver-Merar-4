@@ -1,4 +1,4 @@
-index.html <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -369,4 +369,34 @@ function addBookmark() {
 }
 </script>
 </body>
-</html>
+</html>ml function go() {
+    let value = document.getElementById("urlBox").value.trim();
+    if (!value) return;
+
+    let targetUrl = "";
+    if (value.startsWith("http://") || value.startsWith("https://")) {
+        targetUrl = value;
+    } else if (value.includes(".")) {
+        targetUrl = "https://" + value;
+    } else {
+        // IF IT'S A SEARCH: Open it in a new tab so it doesn't turn into a white page
+        targetUrl = "https://www.google.com/search?q=" + encodeURIComponent(value);
+        window.open(targetUrl, '_blank');
+        return; // Stop execution here so the iframe stays untouched
+    }
+
+    // List of known sites that completely block iframes
+    const blockedSites = ["google.com", "youtube.com", "github.com", "chatgpt.com", "twitter.com", "facebook.com"];
+    
+    // Check if the typed URL matches a blocked site
+    let isBlocked = blockedSites.some(site => targetUrl.toLowerCase().includes(site));
+
+    if (isBlocked) {
+        // Open blocked heavy hitters in a new tab gracefully
+        window.open(targetUrl, '_blank');
+    } else {
+        // Load frame-friendly sites normally inside your dashboard tab
+        const currentFrame = getIframe();
+        navigateFrame(currentFrame, targetUrl);
+    }
+}
